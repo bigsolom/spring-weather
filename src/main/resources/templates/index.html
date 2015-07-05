@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Weather Application</title>
+
+	<!-- CSS -->
+	<!-- load bootstrap and our stylesheet -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+	<style>
+		body { padding-top:50px; }
+	</style>
+
+	<!-- JS -->
+	<!-- load angular and our custom application -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+	<script src="js/app.js"></script>
+</head>
+
+<!-- declare our angular application and angular controller -->
+<body class="container" ng-app="weatherApp" ng-controller="userController as userCtrl">
+
+<div class="jumbotron">
+
+	<!-- display the list using ng-repeat -->
+	<h2>This is my list:</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Email</td>
+				<td>Mobile</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="user in userCtrl.users">
+				<td>{{ user.name }}</td>
+				<td>{{ user.email }}</td>
+				<td>{{ user.mobile }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- form to add computer to the list -->
+	<form class="form-inline" ng-submit="userCtrl.register()">
+		
+		<input type="text" class="form-control" placeholder="Eslam Foad" ng-model="userCtrl.userData.name"/>
+		<input type="text" class="form-control" placeholder="efoad@mail.local" ng-model="userCtrl.userData.email"/>
+		<input type="password" class="form-control" placeholder="password" ng-model="userCtrl.userData.password"/>
+		<input type="text" class="form-control" placeholder="010012345678" ng-model="userCtrl.userData.mobile"/>
+
+		<button type="submit" class="btn btn-success">Add</button>
+	</form>
+</div>
+	
+</body>
+</html>
