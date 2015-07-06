@@ -19,7 +19,7 @@ angular.module('weatherApp', [])
       // add a computer to the list
       vm.users.push({
           name: vm.userData.name,
-          email: vm.userDate.email,
+          email: vm.userData.email,
           password: vm.userData.password,
           mobile: vm.userData.mobile
       });
