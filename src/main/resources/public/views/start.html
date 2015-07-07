@@ -1,0 +1,23 @@
+<div class="row">
+<div class="col-md-6">
+	<form class="form-vertical" ng-submit="start.login()">
+
+		<input type="text" class="form-control" placeholder="Email" ng-model="start.userData.email"/>
+		<input type="password" class="form-control" placeholder="Password" ng-model="start.userData.password"/>
+
+		<button type="submit" class="btn btn-info">Login</button>
+	</form>
+</div>
+<div class="col-md-6">
+<!-- form to add computer to the list -->
+	<form class="form-vertical" ng-submit="start.register()">
+
+		<input type="text" class="form-control" placeholder="Eslam Foad" ng-model="userCtrl.userData.name"/>
+		<input type="text" class="form-control" placeholder="efoad@mail.local" ng-model="userCtrl.userData.email"/>
+		<input type="password" class="form-control" placeholder="password" ng-model="userCtrl.userData.password"/>
+		<input type="text" class="form-control" placeholder="010012345678" ng-model="userCtrl.userData.mobile"/>
+
+		<button type="submit" class="btn btn-success">Register</button>
+	</form>
+	</div>
+	</div>

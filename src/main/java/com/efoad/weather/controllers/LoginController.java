@@ -1,18 +1,26 @@
 package com.efoad.weather.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.efoad.weather.models.User;
+import com.efoad.weather.repos.UsersRepository;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/api/login")
 public class LoginController {
-    @RequestMapping(method=RequestMethod.GET)
-    public String login(@RequestParam(value="email", required=true) String email,@RequestParam(value="password", required=true) String password, Model model) {
-        model.addAttribute("result", email.equals("efoad@mail.local") && password.equals("password"));
-        return "login";
+	
+	@Autowired
+	private UsersRepository usersRepository;
+	
+    @RequestMapping(method=RequestMethod.POST)
+    public User login(@RequestBody(required=true) String email, @RequestBody(required=true) String password) {
+        User user = usersRepository.findByemailAndPassword(email, password);
+//    	model.addAttribute("result", email.equals("efoad@mail.local") && password.equals("password"));
+        return user;
     }
 
 }

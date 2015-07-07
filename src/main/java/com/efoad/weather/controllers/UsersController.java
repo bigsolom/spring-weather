@@ -15,7 +15,7 @@ import com.efoad.weather.models.User;
 import com.efoad.weather.repos.UsersRepository;
 
 @RestController
-@RequestMapping("/users/")
+@RequestMapping("/api/users/")
 public class UsersController {
 	
 	@Autowired

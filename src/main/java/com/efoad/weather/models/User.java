@@ -1,10 +1,15 @@
 package com.efoad.weather.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,13 +22,26 @@ public class User {
 	private int id;
 	@Column(name="name")
 	private String name;
-	@Column(name="email")
+	@Column(name="email", unique=true)
 	private String email;
 	@Column(name="password")
 	private String password;
 	@Column(name="mobile")
 	private String mobile;
-	
+	@Column(name="token")
+	private String token;
+	@OneToMany(cascade=CascadeType.REMOVE)
+	@JoinColumn(name="user_id")
+	private List<Note> notes;
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
 	public User(){
 		super();
 	}
@@ -74,6 +92,13 @@ public class User {
 		return id;
 	}
 	
+	public String getToken() {
+		return token;
+	}
+	
+	public void setToken(String token) {
+		this.token = token;
+	}
 	
 	
 	
