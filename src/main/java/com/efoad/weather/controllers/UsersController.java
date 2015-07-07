@@ -22,6 +22,7 @@ public class UsersController {
 	private UsersRepository usersRepository;
 //	@Autowired 
 //    private PasswordEncoder passwordEncoder;
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public User create(@RequestBody(required=true) String email, @RequestBody(required=true) String name, @RequestBody(required=true) String password, @RequestBody(required=true) String mobile){
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(100);

@@ -2,9 +2,9 @@ angular.module('userCtrl', ['userService', 'authService'])
 
   .controller('userController', function($rootScope, $location, User){
     var vm = this;
-    vm.userData = {};
+//    vm.userData = {};
     vm.login = function(){
-      Auth.login(userData.username, userData.password).success(function(data){
+      Auth.login(vm.loginData.username, vm.loginData.password).success(function(data){
         if (data.success){
           $location.path('/');
           vm.error = '';
