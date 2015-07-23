@@ -16,6 +16,7 @@ angular.module('userCtrl', ['userService', 'authService'])
     }
     vm.register = function(){
       User.create(vm.userData).success(function(data){
+    	console.log(data);
         if (data.success){
           $location.path('/');
           vm.userData = {};

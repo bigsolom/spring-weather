@@ -3,9 +3,9 @@ package com.efoad.weather.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +15,7 @@ import com.efoad.weather.models.User;
 import com.efoad.weather.repos.UsersRepository;
 
 @RestController
-@RequestMapping("/api/users/")
+@RequestMapping("/api/users")
 public class UsersController {
 	
 	@Autowired
@@ -24,9 +24,10 @@ public class UsersController {
 //    private PasswordEncoder passwordEncoder;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public User create(@RequestBody(required=true) String email, @RequestBody(required=true) String name, @RequestBody(required=true) String password, @RequestBody(required=true) String mobile){
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(100);
-		User user = new User(name, email, passwordEncoder.encode(password), mobile);
+	public User create(@RequestBody @Valid User user){
+//	public User create(@RequestBody(required=true) String email, @RequestBody(required=true) String name, @RequestBody(required=true) String password, @RequestBody(required=true) String mobile){
+//		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(100);
+//		User user = new User(name, email, passwordEncoder.encode(password), mobile);
 		usersRepository.save(user);
 		return user;
 	}

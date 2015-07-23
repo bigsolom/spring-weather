@@ -5,8 +5,9 @@ angular.module('userService', [])
   // create a new object
 	var userFactory = {};
 
-	// get a single user
+	// create a new user
 	userFactory.create = function(userData) {
+//		userData = {"name":"Eslam Foad", "email": "efoaf3d@hotma2il", "password":"dsdsd", "mobile":"01010212"}
 		return $http.post('/api/users/', userData);
 	};
 
