@@ -1,6 +1,7 @@
 package com.efoad.weather.models;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.validation.ObjectError;
 
 @Entity
 @Table(name="users")
@@ -20,19 +25,31 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
 //	@Column(name="id")
 	private int id;
+	
 	@Column(name="name")
+	@NotEmpty
 	private String name;
+	
 	@Column(name="email", unique=true)
+	@NotEmpty
 	private String email;
+	
 	@Column(name="password")
+	@NotEmpty
 	private String password;
+	
 	@Column(name="mobile")
+	@NotEmpty
 	private String mobile;
 	@Column(name="token")
 	private String token;
 	@OneToMany(cascade=CascadeType.REMOVE)
 	@JoinColumn(name="user_id")
 	private List<Note> notes;
+	
+	@Transient
+	private Map<String, List<String>> errors;
+
 
 	public List<Note> getNotes() {
 		return notes;
@@ -98,6 +115,14 @@ public class User {
 	
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public Map<String, List<String>> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(Map<String, List<String>> errors) {
+		this.errors = errors;
 	}
 	
 	
