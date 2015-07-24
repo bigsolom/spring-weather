@@ -1,11 +1,11 @@
 angular.module('userCtrl', ['userService', 'authService'])
 
-  .controller('userController', function($rootScope, $location, User){
+  .controller('userController', function($rootScope, $location, User, Auth, AuthToken){
     var vm = this;
 //    vm.userData = {};
     vm.login = function(){
-      Auth.login(vm.loginData.username, vm.loginData.password).success(function(data){
-        if (data.errors.length > 0){
+      Auth.login(vm.loginData.email, vm.loginData.password).success(function(data){
+        if (data.erros && data.errors.length > 0){
           vm.errors = data.errors	
 //          vm.userData = {};
         }else{
@@ -19,11 +19,11 @@ angular.module('userCtrl', ['userService', 'authService'])
     vm.register = function(){
       User.create(vm.userData).success(function(data){
     	console.log(data);
-        if (data.errors){
-          $location.path('/');
-          vm.userData = {};
+        if (data.errors && data.errors.length > 0){
         }else{
-          vm.error = data.message;
+        	AuthToken.setToken(data.token);
+        	$location.path('/');
+        	vm.userData = {};
         }
       });
     }

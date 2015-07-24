@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.validation.ObjectError;
 
 @Entity
 @Table(name="users")
@@ -43,7 +43,7 @@ public class User {
 	private String mobile;
 	@Column(name="token")
 	private String token;
-	@OneToMany(cascade=CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.REMOVE)
 	@JoinColumn(name="user_id")
 	private List<Note> notes;
 	

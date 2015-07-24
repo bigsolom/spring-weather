@@ -8,4 +8,6 @@ import com.efoad.weather.models.User;
 public interface UsersRepository extends CrudRepository<User, Integer>{
 
 	User findByemailAndPassword(String email, String password);
+	User findByemail(String email);
+	User findByToken(String token);
 }

@@ -2,12 +2,14 @@ package com.efoad.weather.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,19 +28,20 @@ public class UsersController {
 	@Autowired
 	private ErrorMappingService errorsMapping;
 //	@Autowired 
-//    private PasswordEncoder passwordEncoder;
+//    private BCryptPasswordEncoder passwordEncoder;
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public User create(@RequestBody @Valid User user, BindingResult bindingResult){
-//	public User create(@RequestBody(required=true) String email, @RequestBody(required=true) String name, @RequestBody(required=true) String password, @RequestBody(required=true) String mobile){
-//		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(100);
-//		User user = new User(name, email, passwordEncoder.encode(password), mobile);
+
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		if (bindingResult.hasErrors()){
 			user.setErrors(errorsMapping.getErrors(bindingResult.getAllErrors()));
 		}else{
-			usersRepository.save(user);
-			
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setToken(UUID.randomUUID().toString());
+			user = usersRepository.save(user);	
+//			user.se
 		}
 		return user;
 	}

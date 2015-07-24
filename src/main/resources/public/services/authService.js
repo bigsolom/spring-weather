@@ -12,11 +12,11 @@ angular.module('authService', [])
 	var authFactory = {};
 
 	// log a user in
-	authFactory.login = function(username, password) {
+	authFactory.login = function(email, password) {
 
 		// return the promise object and its data
 		return $http.post('/api/login', {
-			username: username,
+			email: email,
 			password: password
 		})
 			.success(function(data) {
@@ -39,7 +39,11 @@ angular.module('authService', [])
 		else
 			return false;
 	};
-
+	
+	authFactory.setUser = function(data){
+		
+	};
+	
 	// get the logged in user
 	authFactory.getUser = function() {
 		if (AuthToken.getToken())
