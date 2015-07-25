@@ -1,4 +1,4 @@
-angular.module('mainCtrl', [])
+angular.module('mainCtrl',[])
 
 .controller('mainController', function($rootScope, $location, Auth) {
   var vm = this;
@@ -21,4 +21,5 @@ angular.module('mainCtrl', [])
 
 		$location.path('/start');
   }
+  
 });

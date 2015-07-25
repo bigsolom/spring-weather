@@ -14,5 +14,5 @@ angular.module('weatherService', [])
     return $http.get('/api/weather/notes');
   }
 
-
+  return weatherFactory;
 });

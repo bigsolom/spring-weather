@@ -3,7 +3,9 @@ angular.module('appRoutes', ['ngRoute']).config(function($routeProvider, $locati
 
 	// route for the home page
 	.when('/', {
-		templateUrl : 'views/home.html'
+		templateUrl : 'views/home.html',
+		controller: 'weatherController',
+		controllerAs: 'weather'
 	})
 
 	// login/ register page
