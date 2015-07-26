@@ -1,15 +1,38 @@
+
 <div class="row">
 <div class="col-md-6">
+	<div class="row">
+	<div ng-if="!(_.isEmpty(start.loginErrors))"  class="alert alert-danger" role="alert">
+	  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	  <span class="sr-only">Error:</span>
+	  <span ng-repeat="(key, value) in start.loginErrors">
+	  	<span ng-repeat="error in value">
+	  		{{error}}
+	  	</span>
+	  </span>
+	</div>
+	</div>
 	<form class="form-vertical" ng-submit="start.login()">
 
 		<input type="text" class="form-control" placeholder="Email" ng-model="start.loginData.email"/>
 		<input type="password" class="form-control" placeholder="Password" ng-model="start.loginData.password"/>
 
-		<button type="submit" class="btn btn-info">Login</button>
+		<button ng-disabled="{{start.isLoginEnabled}}" type="submit" class="btn btn-info">Login</button>
 	</form>
 </div>
 <div class="col-md-6">
-<!-- form to add computer to the list -->
+	<div class="row">
+	<div ng-if="!(_.isEmpty(start.registrationErrors))"  class="alert alert-danger" role="alert">
+	  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	  <span class="sr-only">Error:</span>
+	  <span ng-repeat="(key, value) in start.registrationErrors">
+	  	<b>{{key}}</b>
+	  	<span ng-repeat="error in value">
+	  		{{error}}
+	  	</span>
+	  </span>
+	</div>
+	</div>
 	<form class="form-vertical" ng-submit="start.register()">
 
 		<input type="text" class="form-control" placeholder="Eslam Foad" ng-model="start.userData.name"/>
